@@ -171,18 +171,28 @@ new TypeIt("#teks1", {
   waitUntilVisible: true,
 }).go();
 
-new TypeIt("#teks2", {
-  strings: [
-    "Happy birthday to the one, jo mere liye sab kuch hai",
-    " ",
-    "Tere bin ab na lenge ik bhi dum, tujhe kitna chahne lge hum....",
-    " ",
-    "- Tera Adi &#9829",
-  ],
-  startDelay: 2000,
-  speed: 75,
-  waitUntilVisible: true,
-}).go();
+function startTeks2Typing() {
+  const teks2 = document.getElementById("teks2");
+  if (teks2) {
+    new TypeIt("#teks2", {
+      strings: [
+        "Happy birthday to the one, jo mere liye sab kuch hai",
+        " ",
+        "Tere bin ab na lenge ik bhi dum, tujhe kitna chahne lge hum....",
+        " ",
+        "- Tera Adi &#9829",
+      ],
+      startDelay: 2000,
+      speed: 75,
+      waitUntilVisible: true,
+    }).go();
+  } else {
+    // Retry after a short delay if #teks2 isn't found yet (especially for mobile)
+    setTimeout(startTeks2Typing, 500);
+  }
+}
+
+startTeks2Typing();
 
 new TypeIt("#trims", {
   strings: ["Love you so much..."],
